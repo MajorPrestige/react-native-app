@@ -1,11 +1,16 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, ImageBackground } from 'react-native';
 
-export default function RegistrationScreen() {
+import authStyles from './auth.styles';
+import { image } from './auth.styles';
+
+const RegistrationScreen = () => {
   return (
     <View style={styles.container}>
-      <Text>Let's goo</Text>
       <StatusBar style="auto" />
+      <ImageBackground source={image} resizeMode="cover" style={authStyles.image}>
+        {/* <Text>Let's go</Text>  */}
+      </ImageBackground>
     </View>
   );
 };
@@ -13,9 +18,10 @@ export default function RegistrationScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    // backgroundColor: '#fff',
+    // alignItems: 'center',
+    // justifyContent: 'center',
   },
 });
 
+export default RegistrationScreen;

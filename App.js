@@ -1,6 +1,13 @@
-import RegistrationScreen from "./screens/auth/RegistrationScreen";
+import RegistrationScreen from './screens/auth/RegistrationScreen';
+import LoginScreen from './screens/auth/LoginScreen';
 
-export default function App(){
-  <RegistrationScreen />;
+const App = () => {
+  return (
+    <>
+      <RegistrationScreen />
+      {/* <LoginScreen /> */}
+    </>
+  );
 };
 
+export default App;
