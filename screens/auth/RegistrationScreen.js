@@ -2,13 +2,13 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, ImageBackground } from 'react-native';
 
 import authStyles from './auth.styles';
-import { image } from './auth.styles';
+import { imageBg } from './auth.styles';
 
 const RegistrationScreen = () => {
   return (
     <View style={styles.container}>
       <StatusBar style="auto" />
-      <ImageBackground source={image} resizeMode="cover" style={authStyles.image}>
+      <ImageBackground source={imageBg} resizeMode="cover" style={authStyles.imageBg}>
         {/* <Text>Let's go</Text>  */}
       </ImageBackground>
     </View>

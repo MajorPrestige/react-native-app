@@ -1,9 +1,9 @@
 import { StyleSheet } from 'react-native';
 
-export const image = require('../../assets/images/bg.png');
+export const imageBg = require('../../assets/images/bg.png');
 
 const authStyles = StyleSheet.create({
-  image: {
+  imageBg: {
     flex: 1,
   },
 });
