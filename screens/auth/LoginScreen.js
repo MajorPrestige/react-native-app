@@ -6,22 +6,19 @@ import { imageBg } from './auth.styles';
 
 const LoginScreen = () => {
   return (
-    <View style={styles.container}>
+    <View style={authStyles.container}>
       <StatusBar style="auto" />
-      <ImageBackground source={imageBg} resizeMode="cover" style={authStyles.imageBg}>
-        {/* <Text>Let's go</Text>  */}
+      <ImageBackground
+        source={imageBg}
+        resizeMode="cover"
+        style={authStyles.imageBg}
+      >
+        <Text>Let's go</Text> 
       </ImageBackground>
     </View>
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    // backgroundColor: '#000',
-    // alignItems: 'center',
-    // justifyContent: 'center',
-  },
-});
+const styles = StyleSheet.create({});
 
 export default LoginScreen;
