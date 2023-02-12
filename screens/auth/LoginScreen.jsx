@@ -13,7 +13,9 @@ const LoginScreen = () => {
         resizeMode="cover"
         style={authStyles.imageBg}
       >
-        <Text>Let's go</Text> 
+        <View style={authStyles.innerForm}>
+          <TextInput style={authStyles.input} />
+        </View>
       </ImageBackground>
     </View>
   );
