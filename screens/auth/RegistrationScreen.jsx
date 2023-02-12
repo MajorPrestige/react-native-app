@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import {
   StyleSheet,
@@ -28,6 +28,9 @@ const initialState = {
 const RegistrationScreen = () => {
   const [isShowKeyboard, setIsShowKeyboard] = useKeyboardShow();
   const [values, setValues] = useState(initialState);
+
+  const emailEl = useRef(null);
+  const passwordEl = useRef(null);
 
   const handleInputChange = (value, key) => {
     setValues((initialState) => ({ ...initialState, [key]: value }));
@@ -69,23 +72,30 @@ const RegistrationScreen = () => {
                   value={values.login}
                   onFocus={() => setIsShowKeyboard(true)}
                   onChangeText={(value) => handleInputChange(value, 'login')}
+                  blurOnSubmit={false}
+                  onSubmitEditing={() => emailEl.current.focus()}
                 />
                 <TextInput
                   style={authStyles.input}
                   placeholder="Email"
                   placeholderTextColor={colors.textColor}
+                  ref={emailEl}
                   value={values.email}
                   onFocus={() => setIsShowKeyboard(true)}
                   onChangeText={(value) => handleInputChange(value, 'email')}
+                  blurOnSubmit={false}
+                  onSubmitEditing={() => passwordEl.current.focus()}
                 />
                 <TextInput
                   style={authStyles.input}
                   placeholder="Password"
                   secureTextEntry
                   placeholderTextColor={colors.textColor}
+                  ref={passwordEl}
                   value={values.password}
                   onFocus={() => setIsShowKeyboard(true)}
                   onChangeText={(value) => handleInputChange(value, 'password')}
+                  onSubmitEditing={() => handleButtonPress()}
                 />
                 {!isShowKeyboard && (
                   <>
@@ -122,7 +132,7 @@ const s = StyleSheet.create({
     width: 120,
     left: '50%',
     transform: [{ translateX: -50 }],
-    top: '-12%',
+    top: '-17%',
     zIndex: 2,
     backgroundColor: `${colors.bgcolor}`,
   },
