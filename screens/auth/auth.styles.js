@@ -7,11 +7,14 @@ export const imageBg = require('../../assets/images/bg.png');
 const authStyles = StyleSheet.create({
   container: {
     flex: 1,
-    color: '#fff',
   },
   imageBg: {
     flex: 1,
     justifyContent: 'flex-end',
+  },
+  title: {
+    textAlign: 'center',
+    marginBottom: 32,
   },
   innerForm: {
     marginHorizontal: 16,
@@ -25,6 +28,10 @@ const authStyles = StyleSheet.create({
     color: `${colors.titleColor}`,
     borderColor: `${colors.borderColor}`,
     backgroundColor: `${colors.bgcolor}`,
+  },
+  question: {
+    marginTop: 16,
+    textAlign: 'center',
   },
 });
 
