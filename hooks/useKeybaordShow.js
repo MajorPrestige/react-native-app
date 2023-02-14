@@ -1,14 +1,14 @@
 import { Keyboard } from 'react-native';
 import { useEffect, useState } from 'react';
 
-export const useKeyboardShow = () => {
+const useKeyboardShow = () => {
   const [isShowKeyboard, setIsShowKeyboard] = useState(false);
 
   useEffect(() => {
-    const showSubscription = Keyboard.addListener("keyboardDidShow", () => {
+    const showSubscription = Keyboard.addListener("keyboardWillShow", () => {
       setIsShowKeyboard(true);
     });
-    const hideSubscription = Keyboard.addListener("keyboardDidHide", () => {
+    const hideSubscription = Keyboard.addListener("keyboardWillHide", () => {
       setIsShowKeyboard(false);
     });
 
@@ -20,3 +20,5 @@ export const useKeyboardShow = () => {
 
   return [isShowKeyboard, setIsShowKeyboard];
 }
+
+export default useKeyboardShow;

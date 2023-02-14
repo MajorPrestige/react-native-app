@@ -12,14 +12,17 @@ const CustomButton = ({ text, onPressFunc }) => {
 
 const s = StyleSheet.create({
   button: {
-    padding: 16,
-    marginTop: 27,
     justifyContent: 'center',
     alignItems: 'center',
+    padding: 16,
+    marginTop: 27,
     borderRadius: 100,
     backgroundColor: `${colors.themeColor}`,
   },
   text: {
+    fontFamily: 'Roboto-Regular',
+    fontSize: 16,
+    lineHeight: 19,
     color: `${colors.white}`,
   },
 });

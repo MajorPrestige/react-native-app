@@ -5,4 +5,5 @@ export const colors = {
   textColor: "#BDBDBD",
   white: "#FFFFFF",
   themeColor: "#FF6C00",
+  notification: "#1B4371",
 };

@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState, useRef} from 'react';
 import { StatusBar } from 'expo-status-bar';
 import {
   StyleSheet,
@@ -10,14 +10,18 @@ import {
   KeyboardAvoidingView,
   Keyboard,
   TouchableWithoutFeedback,
+  TouchableOpacity
 } from 'react-native';
 
 import CustomButton from '../../components/CustomButton';
 
-import authStyles from './auth.styles';
 import { imageBg } from './auth.styles';
 import { colors } from '../../helpers/variables';
-import { useKeyboardShow } from '../../hooks/useKeybaordShow';
+
+import useFonts from '.././../hooks/useFonts';
+import useKeyboardShow from '../../hooks/useKeybaordShow';
+
+import authStyles from './auth.styles';
 
 const initialState = {
   login: '',
@@ -27,7 +31,9 @@ const initialState = {
 
 const RegistrationScreen = () => {
   const [isShowKeyboard, setIsShowKeyboard] = useKeyboardShow();
+  const [isShowPassword, setIsShowPassword] = useState(false);
   const [values, setValues] = useState(initialState);
+  const { isReady, onLayoutRootView } = useFonts();
 
   const emailEl = useRef(null);
   const passwordEl = useRef(null);
@@ -39,6 +45,9 @@ const RegistrationScreen = () => {
   const handleButtonPress = () => {
     console.log(values);
     setValues({ ...initialState });
+    setIsShowKeyboard(false);
+    setIsShowPassword(false);
+    Keyboard.dismiss();
   };
 
   const keyboardHide = () => {
@@ -46,9 +55,17 @@ const RegistrationScreen = () => {
     Keyboard.dismiss();
   };
 
+  const onInputBtnPress = () => {
+    setIsShowPassword(!isShowPassword);
+  };
+
+  if (!isReady) {
+    return null;
+  }
+
   return (
     <TouchableWithoutFeedback onPress={keyboardHide}>
-      <View style={authStyles.container}>
+      <View style={authStyles.container} onLayout={onLayoutRootView}>
         <StatusBar style="auto" />
         <ImageBackground
           source={imageBg}
@@ -62,7 +79,9 @@ const RegistrationScreen = () => {
                 paddingBottom: isShowKeyboard ? 16 : 78,
               }}
             >
-              <View style={s.imageBox}></View>
+              <View
+                style={{ ...s.imageBox, top: isShowKeyboard ? '-25%' : '-17%' }}
+              ></View>
               <View style={authStyles.innerForm}>
                 <Text style={authStyles.title}>Sign up</Text>
                 <TextInput
@@ -86,10 +105,11 @@ const RegistrationScreen = () => {
                   blurOnSubmit={false}
                   onSubmitEditing={() => passwordEl.current.focus()}
                 />
+                <View>
                 <TextInput
                   style={authStyles.input}
                   placeholder="Password"
-                  secureTextEntry
+                  secureTextEntry={!isShowPassword}
                   placeholderTextColor={colors.textColor}
                   ref={passwordEl}
                   value={values.password}
@@ -97,6 +117,10 @@ const RegistrationScreen = () => {
                   onChangeText={(value) => handleInputChange(value, 'password')}
                   onSubmitEditing={() => handleButtonPress()}
                 />
+                <TouchableOpacity style={authStyles.inputBtn} activeOpacity={0.8} onPress={onInputBtnPress}>
+                    <Text style={authStyles.inputText}>{isShowPassword? "Hide": "Show" }</Text>
+                  </TouchableOpacity>
+                </View>
                 {!isShowKeyboard && (
                   <>
                     <CustomButton
@@ -132,7 +156,6 @@ const s = StyleSheet.create({
     width: 120,
     left: '50%',
     transform: [{ translateX: -50 }],
-    top: '-17%',
     zIndex: 2,
     backgroundColor: `${colors.bgcolor}`,
   },
