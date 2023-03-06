@@ -34,7 +34,7 @@ const RegistrationScreen = () => {
   const [isShowPassword, setIsShowPassword] = useState(false);
   const [values, setValues] = useState(initialState);
   const { isReady, onLayoutRootView } = useFonts();
-
+  
   const emailEl = useRef(null);
   const passwordEl = useRef(null);
 
